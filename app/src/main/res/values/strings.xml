@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Around Town</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
