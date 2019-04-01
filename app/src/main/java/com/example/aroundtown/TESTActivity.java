@@ -3,7 +3,7 @@ package com.example.aroundtown;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class testActivity extends AppCompatActivity {
+public class TESTActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

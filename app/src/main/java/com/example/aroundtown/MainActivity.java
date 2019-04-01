@@ -11,6 +11,9 @@ public class MainActivity extends AppCompatActivity {
 
     ImageButton mapButton;
     ImageButton feedButton;
+    ImageButton calendarButton;
+    ImageButton searchButton;
+    ImageButton settingsButton;
     ImageButton testButton;
 
     @Override
@@ -40,11 +43,44 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        testButton = (ImageButton) findViewById(R.id.ButtonTest);
+        calendarButton = (ImageButton) findViewById(R.id.ButtonCalendar);
+        calendarButton.setOnClickListener(new View.OnClickListener()    {
+            public void onClick(View v) {
+
+                Toast.makeText(MainActivity.this, "This is calendar button", Toast.LENGTH_SHORT).show();
+                /*Intent intent = new Intent(getApplicationContext(),CalendarActivity.class);
+                startActivity(intent);*/
+
+            }
+        });
+
+        searchButton = (ImageButton) findViewById(R.id.ButtonSearch);
+        searchButton.setOnClickListener(new View.OnClickListener()    {
+            public void onClick(View v) {
+
+                Toast.makeText(MainActivity.this, "This is search button", Toast.LENGTH_SHORT).show();
+                /*Intent intent = new Intent(getApplicationContext(),SearchActivity.class);
+                startActivity(intent);*/
+
+            }
+        });
+
+        settingsButton = (ImageButton) findViewById(R.id.ButtonSettings);
+        settingsButton.setOnClickListener(new View.OnClickListener()    {
+            public void onClick(View v) {
+
+                Toast.makeText(MainActivity.this, "This is settings button", Toast.LENGTH_SHORT).show();
+                /*Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
+                startActivity(intent);*/
+
+            }
+        });
+
+        testButton = (ImageButton) findViewById(R.id.ButtonTEST);
         testButton.setOnClickListener(new View.OnClickListener()    {
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(),testActivity.class);
+                Intent intent = new Intent(getApplicationContext(),CreateActivity.class);
                 startActivity(intent);
 
             }

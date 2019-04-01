@@ -8,6 +8,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -44,9 +45,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         /*Toast.makeText(this, "It Works 3", Toast.LENGTH_LONG).show();*/
 
-        LatLng sydney = new LatLng(33.577, -101.855);
-        googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Lubbock"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,12));
+        LatLng Lubbock = new LatLng(33.577816, -101.870596);
+//googleMap.addMarker(new MarkerOptions().position(Lubbock).title("Marker in Lubbock"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Lubbock,12));
+
+        LatLng MadHatters = new LatLng(33.581287,-101.845452);
+        googleMap.addMarker(new MarkerOptions().position(MadHatters).title("Mad Hatter's House of Games").alpha(.7f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+
+        LatLng TTUFootball = new LatLng(33.591087,-101.872902);
+        googleMap.addMarker(new MarkerOptions().position(TTUFootball).title("Texas Tech Football").alpha(.7f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
+        LatLng Presentation = new LatLng(33.583123,-101.873245);
+        googleMap.addMarker(new MarkerOptions().position(Presentation).title("Around Town Presentation").alpha(.7f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+
+        LatLng LubbockPanicRoom = new LatLng(33.527987,-101.889096);
+        googleMap.addMarker(new MarkerOptions().position(LubbockPanicRoom).title("Lubbock Panic Room").alpha(.7f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
+
+        LatLng MainEventLubbock = new LatLng(33.551821,-101.947097);
+        googleMap.addMarker(new MarkerOptions().position(MainEventLubbock).title("Main Event").alpha(.7f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
     }
 
 
