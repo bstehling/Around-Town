@@ -108,6 +108,7 @@ public class CreateActivity extends AppCompatActivity implements AdapterView.OnI
 
             public void onClick(View v) {
                 Toast.makeText(CreateActivity.this, "Creating Event...", Toast.LENGTH_SHORT).show();
+
             }
         });
 

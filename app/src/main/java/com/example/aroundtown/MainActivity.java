@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         feedButton.setOnClickListener(new View.OnClickListener()    {
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(),FeedActivity.class);
+                Intent intent = new Intent(getApplicationContext(),DynamicFeedActivity.class);
                 startActivity(intent);
 
             }
