@@ -6,6 +6,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.StringTokenizer;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -91,13 +93,20 @@ public class HttpUtils {
         }
 
         for(int i =0; i < eventArrayList.size(); i++){
-            if (eventArrayList.get(i).equals("cardgame")){
+            HashSet<String> h = new HashSet<String>();
+            StringTokenizer st = new StringTokenizer(eventArrayList.get(i),",");
+            while(st.hasMoreTokens())
+            {
+                h.add(st.nextToken());
+            }
+
+            if (h.contains("Games") || h.contains("Trivia") || h.contains("Sports")){
                 eventImageList.add(R.drawable.cardgame);
             }
-            else if (eventArrayList.get(i).equals("computer")){
+            if (h.contains("Food and Drink") || h.contains("Bar Event")){
                 eventImageList.add(R.drawable.computer);
             }
-            else if (eventArrayList.get(i).equals("concert")){
+            if (h.contains("Concert") || h.contains("Comedy") || h.contains("Movie")){
                 eventImageList.add(R.drawable.concert);
             }
         }
