@@ -23,6 +23,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import static com.example.aroundtown.util.Constants.ERROR_DIALOG_REQUEST;
@@ -30,7 +31,7 @@ import static com.example.aroundtown.util.Constants.PERMISSIONS_REQUEST_ACCESS_F
 import static com.example.aroundtown.util.Constants.PERMISSIONS_REQUEST_ENABLE_GPS;
 
 public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLocationButtonClickListener,
-        OnMapReadyCallback, GoogleMap.OnMapClickListener {
+        OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnInfoWindowClickListener {
 
     private GoogleMap mMap;
     public static boolean mLocationPermissionGranted = false;
@@ -70,6 +71,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
         // a request for location permission.
         mMap.setMyLocationEnabled(mLocationPermissionGranted);
         mMap.setOnMyLocationButtonClickListener(this);
+
+        mMap.setOnInfoWindowClickListener(this);
 
         /*Toast.makeText(this, "It Works 3", Toast.LENGTH_LONG).show();*/
 
@@ -225,5 +228,12 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
             }
         }
 
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        //marker.getTitle();
+        Toast.makeText(this, "Info window clicked  " + marker.getTitle(),
+                Toast.LENGTH_SHORT).show();
     }
 }
