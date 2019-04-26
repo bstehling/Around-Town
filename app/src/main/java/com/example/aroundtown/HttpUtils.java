@@ -103,10 +103,13 @@ public class HttpUtils {
             if (h.contains("Games") || h.contains("Trivia") || h.contains("Sports")){
                 eventImageList.add(R.drawable.cardgame);
             }
-            if (h.contains("Food and Drink") || h.contains("Bar Event")){
+            else if (h.contains("Food and Drink") || h.contains("Bar Event")){
                 eventImageList.add(R.drawable.computer);
             }
-            if (h.contains("Concert") || h.contains("Comedy") || h.contains("Movie")){
+            else if (h.contains("Concert") || h.contains("Comedy") || h.contains("Movie")){
+                eventImageList.add(R.drawable.concert);
+            }
+            else{
                 eventImageList.add(R.drawable.concert);
             }
         }
