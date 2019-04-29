@@ -32,6 +32,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import cz.msebera.android.httpclient.Header;
 
 import static com.example.aroundtown.util.Constants.ERROR_DIALOG_REQUEST;
@@ -43,7 +45,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
 
     private GoogleMap mMap;
     public static boolean mLocationPermissionGranted = false;
-
+    public static ArrayList<JSONObject> List  = new ArrayList<JSONObject>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 /*
@@ -54,11 +56,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
     }
-
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -100,7 +98,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
 
                         LatLng MadHatters = new LatLng(lat,longi);
                         mMap.addMarker(new MarkerOptions().position(MadHatters).title(VenueName).alpha(.7f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-
+                        List.add(venue);
                     }
                     //Log.d("data",data.toString());
                 }
@@ -115,6 +113,16 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Lubbock,12));
     }
 
+    public JSONObject getObject(String name) throws JSONException {
+        for(JSONObject x : List)
+        {
+            String venue = x.getString("venue");
+            if(venue.equals(name))
+                return x;
+        }
+        return null;
+    }
+
 
     @Override
     public boolean onMyLocationButtonClick() {
@@ -127,7 +135,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
     public void onMapClick(LatLng latLng) {
 
     }
-    
+
     @Override
     public void onResume(){
         super.onResume();
@@ -249,8 +257,15 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        //marker.getTitle();
         Toast.makeText(this, "Info window clicked  " + marker.getTitle(),
                 Toast.LENGTH_SHORT).show();
+        JSONObject value;
+        try{
+            value = getObject(marker.getTitle());
+            Log.d("data",value.getString("venue"));
+        }
+        catch (JSONException e) {
+            Log.d("data", "fail");
+        }
     }
 }
