@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -22,10 +23,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
 import java.util.Calendar;
 
 
 import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.Header;
 
 public class CreateActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener  {
     Button btn;
@@ -35,7 +42,7 @@ public class CreateActivity extends AppCompatActivity implements AdapterView.OnI
     Button edit_picture;
     private static int RESULT_LOAD_IMAGE;
     ImageView event_picture;
-    EditText txtDate, txtTime, queueDate, queueTime;
+    EditText txtDate, txtTime, queueDate, queueTime,txtName,txtDescription;
     private int mYear, mMonth, mDay, mHour, mMinute;
 
     TextView selectedType;
@@ -55,6 +62,8 @@ public class CreateActivity extends AppCompatActivity implements AdapterView.OnI
         eventtime=(Button)findViewById(R.id.btn_event_time);
         txtDate=(EditText)findViewById(R.id.event_date);
         txtTime=(EditText)findViewById(R.id.event_time);
+        txtName=(EditText) findViewById(R.id.event_name);
+        txtDescription=(EditText)findViewById(R.id.description);
         queueDate=(EditText)findViewById(R.id.queue_date);
         queueTime=(EditText)findViewById(R.id.queue_time);
 
@@ -84,13 +93,13 @@ public class CreateActivity extends AppCompatActivity implements AdapterView.OnI
 
 
 
-        Spinner spinner = findViewById(R.id.spinner);
+        final Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.repeatingEvent, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        Spinner spinner2 = findViewById(R.id.spinner2);
+        final Spinner spinner2 = findViewById(R.id.spinner2);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.ageRating, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(adapter2);
@@ -108,6 +117,39 @@ public class CreateActivity extends AppCompatActivity implements AdapterView.OnI
 
             public void onClick(View v) {
                 Toast.makeText(CreateActivity.this, "Creating Event...", Toast.LENGTH_SHORT).show();
+
+                String name = txtName.getText().toString();
+                String venue = "Sample Venue";
+                String eventTime = txtTime.getText().toString() + ";" + txtDate.getText().toString();
+                String category = selectedType.getText().toString();
+                String description = txtDescription.getText().toString();
+                String image = "Sample image";
+                String repeat = spinner.getSelectedItem().toString();
+                String ageRating = spinner2.getSelectedItem().toString();
+                String announceTime = queueTime.getText().toString() + ";" +queueDate.getText().toString();
+
+                RequestParams params = new RequestParams();
+                params.put("name",name);
+                params.put("venue",venue);
+                params.put("dateTime",eventTime);
+                params.put("category",category);
+                params.put("info",description);
+                params.put("image",image);
+                params.put("eventRepeat",repeat);
+                params.put("ageRating",ageRating);
+                params.put("announceTime",announceTime);
+
+                HttpUtils.post("events", params, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        Toast.makeText(CreateActivity.this, "Event created!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                        Toast.makeText(CreateActivity.this, "Event failed to create", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
