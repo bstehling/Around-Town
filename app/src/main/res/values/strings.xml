@@ -61,5 +61,7 @@
 
     </string-array>
     <string name="title_activity_set_types">SetTypesActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_preferences">Preferences</string>
 
 </resources>
