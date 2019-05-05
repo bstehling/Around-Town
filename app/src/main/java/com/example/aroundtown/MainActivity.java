@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     ImageButton calendarButton;
     ImageButton searchButton;
     ImageButton settingsButton;
-    ImageButton testButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,21 +73,13 @@ public class MainActivity extends AppCompatActivity {
 /*
                 Toast.makeText(MainActivity.this, "This is settings button", Toast.LENGTH_SHORT).show();
 */
-                Intent intent = new Intent(getApplicationContext(), ViewVenueActivity.class);
-                startActivity(intent);
+                /*Intent intent = new Intent(getApplicationContext(), ViewVenueActivity.class);
+                startActivity(intent);*/
 
             }
         });
 
-        testButton = (ImageButton) findViewById(R.id.ButtonTEST);
-        testButton.setOnClickListener(new View.OnClickListener()    {
-            public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(),CreateActivity.class);
-                startActivity(intent);
-
-            }
-        });
 
     }
     //Red Vines, What can't they do?
