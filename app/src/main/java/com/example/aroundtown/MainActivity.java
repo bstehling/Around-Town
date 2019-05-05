@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.aroundtown.util.ViewVenueActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     ImageButton mapButton;
@@ -69,9 +71,11 @@ public class MainActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener()    {
             public void onClick(View v) {
 
+/*
                 Toast.makeText(MainActivity.this, "This is settings button", Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
-                startActivity(intent);*/
+*/
+                Intent intent = new Intent(getApplicationContext(), ViewVenueActivity.class);
+                startActivity(intent);
 
             }
         });

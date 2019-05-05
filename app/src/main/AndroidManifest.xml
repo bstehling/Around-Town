@@ -23,7 +23,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DynamicFeedActivity"></activity>
+        <activity android:name=".util.ViewVenueActivity"></activity>
+        <activity android:name=".DynamicFeedActivity" />
         <activity android:name=".TESTActivity" />
         <activity android:name=".CreateActivity" />
         <activity
