@@ -69,8 +69,9 @@ public class MainActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener()    {
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(),Settings.class);
-                startActivity(intent);
+                Toast.makeText(MainActivity.this, "This is settings button", Toast.LENGTH_SHORT).show();
+                /*Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
+                startActivity(intent);*/
 
             }
         });
