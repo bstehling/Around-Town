@@ -51,6 +51,34 @@ public class HttpUtils {
         });
     }*/
 
+    public String[] getUserEmail(JSONArray data){
+        ArrayList<String> userArrayList = new ArrayList<>();
+        for (int i = 0; i < data.length(); i++){
+            try {
+                JSONObject finalObject = new JSONObject(data.getString(i));
+                String email = finalObject.getString("email");
+                userArrayList.add(email);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return userArrayList.toArray(new String[0]);
+    }
+
+    public String[] getUserPass(JSONArray data){
+        ArrayList<String> userArrayList = new ArrayList<>();
+        for (int i = 0; i < data.length(); i++){
+            try {
+                JSONObject finalObject = new JSONObject(data.getString(i));
+                String email = finalObject.getString("password");
+                userArrayList.add(email);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return userArrayList.toArray(new String[0]);
+    }
+
     public String[] getEventName(JSONArray data){
         ArrayList<String> eventArrayList = new ArrayList<>();
         for (int i = 0; i < data.length(); i++){
@@ -116,6 +144,19 @@ public class HttpUtils {
         return eventImageList.toArray(new Integer[0]);
     }
 
+    public void readDataUsers(final dataCallback dataCallback){
+        get("users",new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    JSONArray data = response.getJSONArray("data");
+                    dataCallback.onCallback(data);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
 
     public void readData(final dataCallback dataCallback){

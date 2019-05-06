@@ -7,7 +7,7 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="326dp"
+        android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="105dp"
         android:ems="10"
