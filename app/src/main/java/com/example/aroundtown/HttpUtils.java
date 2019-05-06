@@ -51,6 +51,20 @@ public class HttpUtils {
         });
     }*/
 
+    public String[] getUserAuth(JSONArray data){
+        ArrayList<String> userArrayList = new ArrayList<>();
+        for (int i = 0; i < data.length(); i++){
+            try {
+                JSONObject finalObject = new JSONObject(data.getString(i));
+                String auth = finalObject.getString("auth");
+                userArrayList.add(auth);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return userArrayList.toArray(new String[0]);
+    }
+
     public String[] getUserEmail(JSONArray data){
         ArrayList<String> userArrayList = new ArrayList<>();
         for (int i = 0; i < data.length(); i++){
@@ -70,8 +84,8 @@ public class HttpUtils {
         for (int i = 0; i < data.length(); i++){
             try {
                 JSONObject finalObject = new JSONObject(data.getString(i));
-                String email = finalObject.getString("password");
-                userArrayList.add(email);
+                String pass = finalObject.getString("password");
+                userArrayList.add(pass);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
