@@ -23,6 +23,8 @@
     <string name="make_an_order">Make an order</string>
     <string name="dialog_title">Add some Tags/Types to your event...
     </string>
+    <string name="filter_dialog_title">Find the event for you...
+    </string>
     <string name="ok_label">OK</string>
     <string name="dismiss_label">Dismiss</string>
     <string name="clear_all_label">Clear all</string>
@@ -60,6 +62,33 @@
         <item>Movie</item>
 
     </string-array>
+
+    <string-array name="filter_type">
+
+        <item>Concert</item>
+        <item>Games</item>
+        <item>Sports</item>
+        <item>Trivia</item>
+        <item>Food and Drink</item>
+        <item>Bar Event</item>
+        <item>Comedy</item>
+        <item>Movie</item>
+
+        <item>All Ages</item>
+        <item>13+</item>
+        <item>18+</item>
+        <item>21+</item>
+
+        <item>One Time Event</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Bi-weekly</item>
+        <item>Monthly</item>
+        <item>Annual</item>
+
+
+    </string-array>
+
     <string name="title_activity_set_types">SetTypesActivity</string>
 
     <string name="title_activity_fullscreen">FullscreenActivity</string>
