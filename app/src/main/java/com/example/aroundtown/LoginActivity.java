@@ -32,6 +32,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -342,8 +344,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
 
+            String[] email, pass;
+            final HttpUtils httpUtils = new HttpUtils();
+
+            httpUtils.readDataUsers(new HttpUtils.dataCallback() {
+                @Override
+                public void onCallback(JSONArray data) {
+                    String[] EMAIL = httpUtils.getUserEmail(data);
+                    String[] PASSWORD = httpUtils.getUserPass(data);
+                    String [] email = EMAIL;
+                    String[] pass = PASSWORD;
+                }
+            });
+
             if (success) {
-                if(mEmail.contains("manager")){
+                if(mEmail == email && mPassword == pass){
                     Intent intent = new Intent(getApplicationContext(),ManagerMainActivity.class);
                     startActivity(intent);
 
