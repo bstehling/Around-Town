@@ -190,4 +190,19 @@ public class HttpUtils {
     public interface dataCallback{
         void onCallback(JSONArray data);
     }
+
+    public String[] getAnnouncementTime(JSONArray data) {
+        ArrayList<String> announcementTimeList = new ArrayList<>();
+        for (int i = 0; i < data.length(); i++) {
+            try {
+                JSONObject finalObject = new JSONObject(data.getString(i));
+                String announce = finalObject.getString("announceTime");
+                announcementTimeList.add(announce);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return announcementTimeList.toArray(new String[0]);
+    }
+
 }
