@@ -344,7 +344,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
 
-            String[] email, pass;
             final HttpUtils httpUtils = new HttpUtils();
 
             httpUtils.readDataUsers(new HttpUtils.dataCallback() {
@@ -352,13 +351,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 public void onCallback(JSONArray data) {
                     String[] EMAIL = httpUtils.getUserEmail(data);
                     String[] PASSWORD = httpUtils.getUserPass(data);
-                    String [] email = EMAIL;
-                    String[] pass = PASSWORD;
+
+                    if (success) {
+                        if(mEmail == EMAIL[0] && mPassword == PASSWORD[0]){
+                            Intent intent = new Intent(getApplicationContext(),ManagerMainActivity.class);
+                            startActivity(intent);
+
+                        } else {
+                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            startActivity(intent);
+                        }
+
+
+               /* Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);*/
+
+                        finish();
+                    } else {
+                        mPasswordView.setError(getString(R.string.error_incorrect_password));
+                        mPasswordView.requestFocus();
+                    }
                 }
             });
 
-            if (success) {
-                if(mEmail == email && mPassword == pass){
+           /* if (success) {
+                if(mEmail == email[0] && mPassword == pass[0]){
                     Intent intent = new Intent(getApplicationContext(),ManagerMainActivity.class);
                     startActivity(intent);
 
@@ -368,14 +385,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
 
 
-               /* Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);*/
+               *//* Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);*//*
 
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
-            }
+            }*/
         }
 
         @Override
