@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,10 +33,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.util.ArrayUtils;
+
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import cz.msebera.android.httpclient.auth.AUTH;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -351,22 +357,45 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 public void onCallback(JSONArray data) {
                     String[] EMAIL = httpUtils.getUserEmail(data);
                     String[] PASSWORD = httpUtils.getUserPass(data);
+                    String[] AUTH = httpUtils.getUserAuth(data);
+                    Log.d("data",Arrays.toString(EMAIL));
+                    Log.d("data",Arrays.toString(PASSWORD));
+                    Log.d("data",Arrays.toString(AUTH));
+
+                    int pos = Arrays.asList(EMAIL).indexOf(mEmail);
 
                     if (success) {
-                        if(mEmail == EMAIL[0] && mPassword == PASSWORD[0]){
-                            Intent intent = new Intent(getApplicationContext(),ManagerMainActivity.class);
-                            startActivity(intent);
 
-                        } else {
-                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                            startActivity(intent);
+                        if(pos >= 0)
+                        {
+                            if(mPassword.equals(PASSWORD[pos]))
+                            {
+                                if(AUTH[pos].equals("1")) {
+                                    Intent intent = new Intent(getApplicationContext(),ManagerMainActivity.class);
+                                    startActivity(intent);
+
+                                }else if(AUTH[pos].equals("0"))
+                                {
+                                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                    startActivity(intent);
+                                }
+                                else{
+                                    mPasswordView.setError("Incorrect Login");
+                                }
+                            }
+                            else{
+                                mPasswordView.setError("Incorrect Login");
+                            }
+                        }else
+                        {
+                            mPasswordView.setError("Incorrect Login");
                         }
-
-
                /* Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);*/
 
+/*
                         finish();
+*/
                     } else {
                         mPasswordView.setError(getString(R.string.error_incorrect_password));
                         mPasswordView.requestFocus();

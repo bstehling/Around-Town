@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/event_name"
+        android:id="@+id/eventName"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
         android:layout_width="match_parent"
@@ -19,23 +19,15 @@
         android:textColor="@android:color/white"
         android:textAlignment="center"/>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_below="@id/event_name"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/madhatters"/>
+
 
     <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView"
+        android:layout_below="@id/eventName"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="15dp"
         android:textColor="@android:color/black"
         android:text="Description" />
