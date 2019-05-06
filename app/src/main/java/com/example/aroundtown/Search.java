@@ -36,7 +36,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class Search extends AppCompatActivity {
     Button btn;
-
+    Button searchBtn;
     TextView selectedType;
     String[] listItems;
     boolean[] checkedItems;
@@ -47,6 +47,9 @@ public class Search extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         btn = (Button)findViewById(R.id.filter_btn);
+
+        searchBtn = (Button)findViewById(R.id.search_btn);
+
 
         selectedType = (TextView) findViewById(R.id.tvItemSelected);
 
@@ -115,6 +118,15 @@ public class Search extends AppCompatActivity {
                 AlertDialog mDialog = mBuilder.create();
                 mDialog.show();
             }
+        });
+
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Searching...", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+
         });
     }
 }
