@@ -47,10 +47,8 @@ public class MainActivity extends AppCompatActivity {
         calendarButton = (ImageButton) findViewById(R.id.ButtonCalendar);
         calendarButton.setOnClickListener(new View.OnClickListener()    {
             public void onClick(View v) {
-
-                Toast.makeText(MainActivity.this, "This is calendar button", Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(getApplicationContext(),CalendarActivity.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(getApplicationContext(),CalendarActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -73,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
 /*
                 Toast.makeText(MainActivity.this, "This is settings button", Toast.LENGTH_SHORT).show();
 */
-                /*Intent intent = new Intent(getApplicationContext(), ViewVenueActivity.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(getApplicationContext(), Settings.class);
+                startActivity(intent);
 
             }
         });
