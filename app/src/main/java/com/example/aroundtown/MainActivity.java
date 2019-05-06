@@ -59,9 +59,8 @@ public class MainActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener()    {
             public void onClick(View v) {
 
-                Toast.makeText(MainActivity.this, "This is search button", Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(getApplicationContext(),SearchActivity.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(getApplicationContext(),Search.class);
+                startActivity(intent);
 
             }
         });
